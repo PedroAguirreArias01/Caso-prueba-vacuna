@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "//Hibernet/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="models.Historial" table="historial">
+        <id column="id_persona" name="idPersona">
+            <generator class="foreign">
+                <param name="property">persona</param>
+            </generator>
+        </id>
+        <property name="fechaCreacion" type="java.time.LocalDate">
+            <column name="fecha_creacion"/>
+        </property>
+        <one-to-one name="persona" constrained="true"></one-to-one>
+    </class>
+</hibernate-mapping>
