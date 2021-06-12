@@ -10,6 +10,7 @@ import java.time.Month;
 import models.Enfermedad;
 import models.Historial;
 import models.Persona;
+import models.Vacuna;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import utils.HibernateUtil;
@@ -24,18 +25,21 @@ public class CasoPruebaVacuna {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Historial historial = new Historial();
         historial.setFechaCreacion(LocalDate.now());
         Persona persona = createPerson();
         persona.setHistorial(historial);
         historial.setPersona(persona);
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Vacuna vacuna = createVacuna();
+        Enfermedad enfermedad = createEnfermedad();
+        vacuna.getListEnfermedades().add(enfermedad);
         try{
             session.beginTransaction();
             session.save(persona);
             session.save(historial);
-            session.save(createEnfermedad());
+            session.save(vacuna);
+            session.save(enfermedad);            
             session.getTransaction().commit();
         } catch(HibernateException e){
             session.getTransaction().rollback();
@@ -47,7 +51,6 @@ public class CasoPruebaVacuna {
     
     public static Enfermedad createEnfermedad(){
         Enfermedad enfermedad = new Enfermedad();
-        enfermedad.setId(1);
         enfermedad.setNombre("Covid 19");
         enfermedad.setDescripcion("Enfermedad que afecta los pulmones");
         return enfermedad;
@@ -55,7 +58,6 @@ public class CasoPruebaVacuna {
     
     public static Persona createPerson(){
         Persona persona = new Persona();
-        persona.setId(5);
         persona.setPrimerApellido("Aguirre");
         persona.setSegundoApellido("Arias");
         persona.setDocumento("1007142723");
@@ -65,5 +67,10 @@ public class CasoPruebaVacuna {
         return persona;
     }
     
-  
+  public static Vacuna createVacuna(){
+      Vacuna vacuna = new Vacuna();
+      vacuna.setNombre("Pfizer");
+      vacuna.setDescripcion("Vacuna que protege frente al covid 19 ");
+      return vacuna;
+  }
 }

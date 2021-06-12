@@ -12,5 +12,6 @@
         <mapping resource="map/persona.map.hbm.xml"/>        
         <mapping resource="map/historial.map.hbm.xml"/>
         <mapping resource="map/enfermedad.map.hbm.xml"/>
+        <mapping resource="map/vacuna.map.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

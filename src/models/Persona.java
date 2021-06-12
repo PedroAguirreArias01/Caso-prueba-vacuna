@@ -22,13 +22,13 @@ public class Persona implements Serializable {
     private String primerApellido;
     private String segundoApellido;
     private LocalDate fechaNacimiento;
-    private Character sexo;
+    private String sexo;
     private Historial historial;
     
     public Persona() {
     }
 
-    public Persona(Integer id, String documento, String tipoDocumento, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, LocalDate fechaNacimiento, Character sexo, Historial historial) {
+    public Persona(Integer id, String documento, String tipoDocumento, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, LocalDate fechaNacimiento, String sexo, Historial historial) {
         this.id = id;
         this.documento = documento;
         this.tipoDocumento = tipoDocumento;
@@ -105,11 +105,11 @@ public class Persona implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Character getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Character sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
