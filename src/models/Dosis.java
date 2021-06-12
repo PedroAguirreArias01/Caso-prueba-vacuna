@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Dosis implements Serializable{
     private Integer valorTiempo;
     private String unidadTiempo;
     private Vacuna vacuna;
-    private HashSet<DosisAplicada> listaDosisAplicada = new HashSet<>();
+   private Set<DosisAplicada> listaDosisAplicada = new HashSet<>();
 
     public Dosis() {
     }
@@ -62,18 +63,16 @@ public class Dosis implements Serializable{
         this.vacuna = vacuna;
     }
 
-    public HashSet<DosisAplicada> getListaDosisAplicada() {
+    public Set<DosisAplicada> getListaDosisAplicada() {
         return listaDosisAplicada;
     }
 
-    public void setListaDosisAplicada(HashSet<DosisAplicada> listaDosisAplicada) {
+    public void setListaDosisAplicada(Set<DosisAplicada> listaDosisAplicada) {
         this.listaDosisAplicada = listaDosisAplicada;
     }
 
     @Override
     public String toString() {
-        return "Dosis{" + "id=" + id + ", valorTiempo=" + valorTiempo + ", unidadTiempo=" + unidadTiempo + ", vacuna=" + vacuna + ", listaDosisAplicada=" + listaDosisAplicada + '}';
+        return "Dosis{" + "id=" + id + ", valorTiempo=" + valorTiempo + ", unidadTiempo=" + unidadTiempo + ", vacuna=" + vacuna +'}';
     }
-
-   
 }

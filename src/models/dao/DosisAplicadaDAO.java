@@ -5,11 +5,8 @@
  */
 package models.dao;
 
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
-import models.Historial;
-import models.Persona;
+import models.DosisAplicada;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import utils.HibernateUtil;
@@ -18,18 +15,13 @@ import utils.HibernateUtil;
  *
  * @author Pedro
  */
-public class PersonaDAO implements Serializable {
+public class DosisAplicadaDAO {
 
-    public void crearPersona(Persona persona) {
+    public void crearDosisAplicada(DosisAplicada dosisAplicada) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            //Historial historial = new Historial();
-            //historial.setFechaCreacion(LocalDate.now());
-            //persona.setHistorial(historial);
-            //historial.setPersona(persona);
             session.beginTransaction();
-            session.save(persona);
-            //session.save(historial);
+            session.save(dosisAplicada);
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -39,11 +31,11 @@ public class PersonaDAO implements Serializable {
         }
     }
 
-    public void actualizarPersona(Persona persona) {
+    public void actualizarDosisAplicada(DosisAplicada dosisAplicada) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
-            session.update(persona);
+            session.update(dosisAplicada);
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -53,11 +45,11 @@ public class PersonaDAO implements Serializable {
         }
     }
 
-    public void eliminarPersona(Persona persona) {
+    public void eliminarDosisAplicada(DosisAplicada dosisAplicada) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
-            session.delete(persona);
+            session.delete(dosisAplicada);
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -67,17 +59,19 @@ public class PersonaDAO implements Serializable {
         }
     }
 
-    public Persona consultarPersonaPorID(Integer idPersona) {
+    public DosisAplicada consultarDosisAplicadaPorID(Integer idDosisAplicada) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Persona persona = session.get(Persona.class, idPersona);
+        DosisAplicada DosisAplicada = session.get(DosisAplicada.class, idDosisAplicada);
         session.close();
-        return persona;
+        return DosisAplicada;
     }
 
-    public List<Persona> consultarTodasPersonas() {
+    public List<DosisAplicada> consultarTodasDosisAplicadaes() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Persona> listPersona = session.createQuery("from Persona").list();
-        return listPersona;
+        session.beginTransaction();
+        List<DosisAplicada> listDosisAplicadaes = session.createQuery("from DosisAplicada").list();
+        session.close();
+        return listDosisAplicadaes;
     }
 }

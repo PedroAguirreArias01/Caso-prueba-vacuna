@@ -11,6 +11,6 @@
             <column name="fecha_aplicacion" not-null="true"/>
         </property>
         <many-to-one name="historial" column="id_historial"/>
-        <many-to-one name="dosis" column="id_dosis" />
+        <many-to-one name="dosis" column="id_dosis"/>
     </class>
 </hibernate-mapping>

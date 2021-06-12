@@ -13,7 +13,8 @@
         <property name="unidadTiempo" type="string">
             <column name="unidad_tiempo"/>
         </property>
-        <set name="listaDosisAplicada" table="dosis_aplicada" cascade="all" inverse="false">
+        <many-to-one name="vacuna" column="id_vacuna"></many-to-one>
+        <set name="listaDosisAplicada" cascade="all" inverse="false">
             <key column="id_dosis"/>
             <one-to-many class="models.DosisAplicada"/>
         </set>

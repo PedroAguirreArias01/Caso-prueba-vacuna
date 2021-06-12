@@ -12,7 +12,7 @@
             <column name="fecha_creacion"/>
         </property>
         <one-to-one name="persona" class="models.Persona" constrained="true"/>
-        <set name="listaDosisAplicada" cascade="all" inverse="false">
+        <set name="listaDosisAplicada">
             <key column="id_historial"/>
             <one-to-many class="models.DosisAplicada"/>
         </set>
