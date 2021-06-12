@@ -7,16 +7,18 @@ package models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 
 /**
  *
  * @author Pedro
  */
-public class Historial implements Serializable{
-    
+public class Historial implements Serializable {
+
     private Integer idPersona;
     private LocalDate fechaCreacion;
     private Persona persona;
+    private HashSet<DosisAplicada> listaDosisAplicada = new HashSet<>();
 
     public Historial() {
     }
@@ -51,9 +53,12 @@ public class Historial implements Serializable{
         this.persona = persona;
     }
 
-    @Override
-    public String toString() {
-        return "Historial{" + "idPersona=" + idPersona + ", fechaCreacion=" + fechaCreacion + '}';
+    public HashSet<DosisAplicada> getListaDosisAplicada() {
+        return listaDosisAplicada;
     }
-    
+
+    public void setListaDosisAplicada(HashSet<DosisAplicada> listaDosisAplicada) {
+        this.listaDosisAplicada = listaDosisAplicada;
+    }
+
 }

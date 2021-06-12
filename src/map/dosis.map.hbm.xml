@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "//Hibernet/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="models.Dosis" table="dosis">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="valorTiempo" type="java.lang.Integer">
+            <column name="valor_tiempo"/>
+        </property>
+        <property name="unidadTiempo" type="string">
+            <column name="unidad_tiempo"/>
+        </property>
+        <set name="listaDosisAplicada" table="dosis_aplicada" cascade="all" inverse="false">
+            <key column="id_dosis"/>
+            <one-to-many column="id" class="models.Dosis"/>
+        </set>
+    </class>
+</hibernate-mapping>
