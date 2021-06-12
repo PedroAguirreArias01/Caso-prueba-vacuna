@@ -10,17 +10,26 @@
         <property name="documento" type="string">
             <column name="documento"/>
         </property>
-        <property name="tipo_documento" type="string">
+        <property name="tipoDocumento" type="string">
             <column name="tipo_documento"/>
         </property>
-        <property name="nombres" type="string">
-            <column name="nombres"/>
+        <property name="primerNombre" type="string">
+            <column name="primer_nombre"/>
         </property>
-        <property name="apellidos" type="string">
-            <column name="apellidos"/>
+        <property name="segundoNombre" type="string">
+            <column name="segundo_nombre"/>
+        </property>
+        <property name="primerApellido" type="string">
+            <column name="primer_apellido"/>
+        </property>
+        <property name="segundoApellido" type="string">
+            <column name="segundo_apellido"/>
         </property>
         <property name="fechaNacimiento" type="java.time.LocalDate">
             <column name="fecha_nacimiento"/>
+        </property>
+        <property name="sexo" type="Character">
+            <column name="sexo"/>
         </property>
         <one-to-one name="historial" cascade="save-update" class="models.Historial"></one-to-one>
     </class>

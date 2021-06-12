@@ -6,6 +6,8 @@
 package models;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -16,10 +18,11 @@ public class Vacuna implements Serializable{
     private Integer id;
     private String nombre;
     private String descripcion;
+    private Set<Enfermedad> listEnfermedades = new HashSet<>();
 
     public Vacuna() {
     }
-    
+
     public Vacuna(Integer id, String nombre, String descripcion) {
         this.id = id;
         this.nombre = nombre;
@@ -48,6 +51,14 @@ public class Vacuna implements Serializable{
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Set<Enfermedad> getListEnfermedades() {
+        return listEnfermedades;
+    }
+
+    public void setListEnfermedades(Set<Enfermedad> listEnfermedades) {
+        this.listEnfermedades = listEnfermedades;
     }
 
     @Override
