@@ -13,7 +13,7 @@
         <property name="descripcion" type="string">
             <column name="descripcion"/>
         </property>
-        <set name="listaVacuna" table="ENFERMEDAS_VACUNAS" cascade="all" inverse="true">
+        <set name="listaVacuna" table="ENFERMEDAD_VACUNAS" cascade="all" inverse="true">
             <key column="id_enfermedad"/>
             <many-to-many column="id_vacuna" class="models.Vacuna"/>
         </set>
