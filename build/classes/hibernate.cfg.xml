@@ -13,5 +13,7 @@
         <mapping resource="map/historial.map.hbm.xml"/>
         <mapping resource="map/enfermedad.map.hbm.xml"/>
         <mapping resource="map/vacuna.map.hbm.xml"/>
+        <mapping resource="map/dosis.map.hbm.xml"/>
+        <mapping resource="map/dosisAplicada.map.hbm.xml"/> 
     </session-factory>
 </hibernate-configuration>

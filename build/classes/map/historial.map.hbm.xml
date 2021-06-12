@@ -11,10 +11,10 @@
         <property name="fechaCreacion" type="java.time.LocalDate">
             <column name="fecha_creacion"/>
         </property>
-        <one-to-one column="persona" class="model.Persona.java" constrained="true"/>
+        <one-to-one name="persona" class="models.Persona" constrained="true"/>
         <set name="listaDosisAplicada" cascade="all" inverse="false">
             <key column="id_historial"/>
-            <one-to-many column="id" class="models.DosisAplicada.java"/>
+            <one-to-many class="models.DosisAplicada"/>
         </set>
     </class>
 </hibernate-mapping>

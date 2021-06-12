@@ -15,7 +15,7 @@
         </property>
         <set name="listaDosisAplicada" table="dosis_aplicada" cascade="all" inverse="false">
             <key column="id_dosis"/>
-            <one-to-many column="id" class="models.Dosis"/>
+            <one-to-many class="models.DosisAplicada"/>
         </set>
     </class>
 </hibernate-mapping>
