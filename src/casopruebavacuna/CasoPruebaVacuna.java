@@ -33,14 +33,14 @@ public class CasoPruebaVacuna {
         VacunaDAO vacunaDAO = new VacunaDAO();
         DosisDAO dosisDAO = new DosisDAO();
         DosisAplicadaDAO dosisAplicadaDAO = new DosisAplicadaDAO();
-        
+
         Persona persona = createPerson();
         Historial historial = new Historial();
         historial.setFechaCreacion(LocalDate.now());
         persona.setHistorial(historial);
         historial.setPersona(persona);
         personaDAO.crearPersona(persona);
-        
+
         Vacuna vacuna = createVacuna();
         Enfermedad enfermedad = createEnfermedad();
         vacuna.getListEnfermedades().add(enfermedad);
@@ -51,8 +51,11 @@ public class CasoPruebaVacuna {
 
         DosisAplicada dosisAplicada = crearDosisAplicada(dosis, historial);
         dosisAplicadaDAO.crearDosisAplicada(dosisAplicada);
-        
+
         consultarPersonas(personaDAO);
+        //consultarDosisAplicada(dosisAplicadaDAO);
+
+        //eliminarPersona(personaDAO);
     }
 
     public static Enfermedad createEnfermedad() {
@@ -70,7 +73,7 @@ public class CasoPruebaVacuna {
         persona.setFechaNacimiento(LocalDate.of(1995, Month.DECEMBER, 12));
         persona.setPrimerNombre("Rosa");
         persona.setTipoDocumento("C");
-        
+
         return persona;
     }
 
@@ -96,12 +99,43 @@ public class CasoPruebaVacuna {
         dosisAplicada.setFechaAplicacion(LocalDate.now());
         return dosisAplicada;
     }
-    
-    public static void consultarPersonas(PersonaDAO personaDAO){
+
+    public static void consultarPersonas(PersonaDAO personaDAO) {
         List<Persona> listPersonas = personaDAO.consultarTodasPersonas();
         for (Persona listPersona : listPersonas) {
             System.out.println(listPersona.toString());
         }
     }
-    
+
+    public static void consultarVacunas(VacunaDAO vacunaDAO) {
+        List<Vacuna> listaVacunas = vacunaDAO.consultarTodasVacunas();
+        System.out.println("LISTADO DE VACUNAS");
+        for (Vacuna vacuna : listaVacunas) {
+            System.out.println(vacuna.toString());
+        }
+    }
+
+    public static void consultarDosis(DosisDAO dosisDAO) {
+        List<Dosis> listDosis = dosisDAO.consultarTodasDosises();
+        System.out.println("LISTADO DE DOSIS");
+        for (Dosis dosis : listDosis) {
+            System.out.println(dosis.toString());
+        }
+    }
+
+    public static void consultarDosisAplicada(DosisAplicadaDAO dosisAplicadaDAO) {
+        List<DosisAplicada> listDosisAplicada = dosisAplicadaDAO.consultarTodasDosisAplicadaes();
+        System.out.println("LISTADO DE DOSIS APLICADA");
+        for (DosisAplicada dosisAplicada : listDosisAplicada) {
+            System.out.println(dosisAplicada.toString());
+        }
+    }
+
+    public static void eliminarPersona(PersonaDAO personaDAO) {
+        Persona persona = personaDAO.consultarPersonaPorID(1);
+        System.out.println("Persona a eliminar: ");
+        System.out.println(persona.toString());
+        personaDAO.eliminarPersona(persona);
+        System.out.println("PERSONA ELIMINADA:)");
+    }
 }

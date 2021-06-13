@@ -67,7 +67,7 @@ public class VacunaDAO {
         return vacuna;
     }
 
-    public List<Vacuna> consultarTodasPersonas() {
+    public List<Vacuna> consultarTodasVacunas() {
         Session session = HibernateUtil.getSessionFactory().openSession();
          session.beginTransaction();
         List<Vacuna> listVacunas = session.createQuery("from Vacuna").list();
