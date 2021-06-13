@@ -12,7 +12,8 @@ import java.time.LocalDate;
  *
  * @author Pedro
  */
-public class DosisAplicada implements Serializable{
+public class DosisAplicada implements Serializable {
+
     private Integer id;
     private LocalDate fechaAplicacion;
     private Historial historial;
@@ -62,6 +63,6 @@ public class DosisAplicada implements Serializable{
 
     @Override
     public String toString() {
-        return "DosisAplicada{" + "id=" + id + ", fechaAplicacion=" + fechaAplicacion + ", historial=" + historial + ", dosis=" + dosis + '}';
+        return "DosisAplicada{" + "id=" + id + ", fechaAplicacion=" + fechaAplicacion +'}';
     }
 }

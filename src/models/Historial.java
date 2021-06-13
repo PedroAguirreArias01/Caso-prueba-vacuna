@@ -62,4 +62,8 @@ public class Historial implements Serializable {
         this.listaDosisAplicada = listaDosisAplicada;
     }
 
+    @Override
+    public String toString() {
+        return "Historial{" + "idPersona=" + idPersona + ", fechaCreacion=" + fechaCreacion + ", persona=" + persona + ", listaDosisAplicada=" + listaDosisAplicada + '}';
+    }
 }

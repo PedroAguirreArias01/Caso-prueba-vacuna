@@ -16,6 +16,7 @@ import models.Persona;
 import models.Vacuna;
 import models.dao.DosisAplicadaDAO;
 import models.dao.DosisDAO;
+import models.dao.EnfermedadDAO;
 import models.dao.PersonaDAO;
 import models.dao.VacunaDAO;
 
@@ -33,28 +34,30 @@ public class CasoPruebaVacuna {
         VacunaDAO vacunaDAO = new VacunaDAO();
         DosisDAO dosisDAO = new DosisDAO();
         DosisAplicadaDAO dosisAplicadaDAO = new DosisAplicadaDAO();
-
-        Persona persona = createPerson();
-        Historial historial = new Historial();
-        historial.setFechaCreacion(LocalDate.now());
-        persona.setHistorial(historial);
-        historial.setPersona(persona);
-        personaDAO.crearPersona(persona);
-
-        Vacuna vacuna = createVacuna();
-        Enfermedad enfermedad = createEnfermedad();
-        vacuna.getListEnfermedades().add(enfermedad);
-        vacunaDAO.crearVacuna(vacuna);
-
-        Dosis dosis = crearDosis(vacuna);
-        dosisDAO.crearDosis(dosis);
-
-        DosisAplicada dosisAplicada = crearDosisAplicada(dosis, historial);
-        dosisAplicadaDAO.crearDosisAplicada(dosisAplicada);
+        EnfermedadDAO enfermedadDAO = new EnfermedadDAO();
+//        Persona persona = createPerson();
+//        Historial historial = new Historial();
+//        historial.setFechaCreacion(LocalDate.now());
+//        persona.setHistorial(historial);
+//        historial.setPersona(persona);
+//        personaDAO.crearPersona(persona);
+//
+//        Vacuna vacuna = createVacuna();
+//        Enfermedad enfermedad = createEnfermedad();
+//        vacuna.getListEnfermedades().add(enfermedad);
+//        vacunaDAO.crearVacuna(vacuna);
+//
+//        Dosis dosis = crearDosis(vacuna);
+//        dosisDAO.crearDosis(dosis);
+//
+//        DosisAplicada dosisAplicada = crearDosisAplicada(dosis, historial);
+//        dosisAplicadaDAO.crearDosisAplicada(dosisAplicada);
 
         consultarPersonas(personaDAO);
-        //consultarDosisAplicada(dosisAplicadaDAO);
-
+        consultarVacunas(vacunaDAO);
+        consultarDosis(dosisDAO);
+        consultarDosisAplicada(dosisAplicadaDAO);
+        consultarEnfermedades(enfermedadDAO);
         //eliminarPersona(personaDAO);
     }
 
@@ -102,6 +105,7 @@ public class CasoPruebaVacuna {
 
     public static void consultarPersonas(PersonaDAO personaDAO) {
         List<Persona> listPersonas = personaDAO.consultarTodasPersonas();
+        System.out.println("LISTA DE PERSONAS");
         for (Persona listPersona : listPersonas) {
             System.out.println(listPersona.toString());
         }
@@ -130,9 +134,21 @@ public class CasoPruebaVacuna {
             System.out.println(dosisAplicada.toString());
         }
     }
-
-    public static void eliminarPersona(PersonaDAO personaDAO) {
-        Persona persona = personaDAO.consultarPersonaPorID(1);
+    
+    public static void consultarEnfermedades(EnfermedadDAO enfermedadDAO){
+        List<Enfermedad> listEnfermedad = enfermedadDAO.consultarTodasEnfermedades();
+        System.out.println("LISTADO DE ENFERMEDADES");
+        for (Enfermedad enfermedad : listEnfermedad) {
+            System.out.println(enfermedad.toString());
+        }
+    }
+    
+    public static void eliminarDosisAplicada(DosisAplicadaDAO dosisAplicadaDAO, DosisAplicada dosisAplicada){
+        dosisAplicadaDAO.eliminarDosisAplicada(dosisAplicada);
+    }
+    
+    public static void eliminarPersona(PersonaDAO personaDAO, Integer idPersona) {
+        Persona persona = personaDAO.consultarPersonaPorID(idPersona);
         System.out.println("Persona a eliminar: ");
         System.out.println(persona.toString());
         personaDAO.eliminarPersona(persona);

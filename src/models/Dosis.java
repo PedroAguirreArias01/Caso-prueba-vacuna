@@ -73,6 +73,6 @@ public class Dosis implements Serializable{
 
     @Override
     public String toString() {
-        return "Dosis{" + "id=" + id + ", valorTiempo=" + valorTiempo + ", unidadTiempo=" + unidadTiempo + ", vacuna=" + vacuna +'}';
+        return "Dosis{" + "id=" + id + ", valorTiempo=" + valorTiempo + ", unidadTiempo=" + unidadTiempo +'}';
     }
 }

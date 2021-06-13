@@ -120,7 +120,7 @@ public class Persona implements Serializable {
     public void setHistorial(Historial historial) {
         this.historial = historial;
     }
-    
+
     @Override
     public String toString() {
         return "Persona{" + "id=" + id + ", documento=" + documento + ", tipoDocumento=" + tipoDocumento + ", primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + '}';
