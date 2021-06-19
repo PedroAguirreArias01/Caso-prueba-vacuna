@@ -42,7 +42,7 @@ public class CasoPruebaVacuna {
         persona.setHistorial(historial);
         historial.setPersona(persona);
         personaDAO.crearPersona(persona);
-
+        
         Vacuna vacuna = createVacuna();
         Enfermedad enfermedad = createEnfermedad();
         vacuna.getListEnfermedades().add(enfermedad);
@@ -71,7 +71,7 @@ public class CasoPruebaVacuna {
 
     public static Enfermedad createEnfermedad() {
         Enfermedad enfermedad = new Enfermedad();
-        enfermedad.setNombre("Covid 19 v2");
+        enfermedad.setNombre("Covid 19 v5");
         enfermedad.setDescripcion("Enfermedad que afecta los pulmones");
         return enfermedad;
     }

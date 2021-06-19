@@ -7,24 +7,45 @@ package models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Pedro
  */
+@Entity
+@Table(name = "PERSONAS")
 public class Persona implements Serializable {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String documento;
+    @Column(name = "tipo_documento")
     private String tipoDocumento;
+    @Column(name = "primer_nombre")
     private String primerNombre;
+    @Column(name = "segundo_nombre")
     private String segundoNombre;
+    @Column(name = "primer_apellido")
     private String primerApellido;
+    @Column(name = "segundo_apellido")
     private String segundoApellido;
+    @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
     private String sexo;
+
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
     private Historial historial;
-    
+
     public Persona() {
     }
 
@@ -125,5 +146,5 @@ public class Persona implements Serializable {
     public String toString() {
         return "Persona{" + "id=" + id + ", documento=" + documento + ", tipoDocumento=" + tipoDocumento + ", primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + '}';
     }
-   
+
 }

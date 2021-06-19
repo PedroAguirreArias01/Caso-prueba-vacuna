@@ -9,12 +9,19 @@
         <property name="connection.username">vacuna</property>
         <property name="connection.password">a123</property>
         <property name="current_session_context_class">thread</property>
-        <mapping resource="map/persona.map.hbm.xml"/>        
+<!--        <mapping resource="map/persona.map.hbm.xml"/>        
         <mapping resource="map/historial.map.hbm.xml"/>
         <mapping resource="map/enfermedad.map.hbm.xml"/>
         <mapping resource="map/vacuna.map.hbm.xml"/>
         <mapping resource="map/dosis.map.hbm.xml"/>
         <mapping resource="map/dosisAplicada.map.hbm.xml"/>         
-        <mapping resource="map/familiar.map.hbm.xml"/> 
+        <mapping resource="map/familiar.map.hbm.xml"/> -->
+        <mapping class="models.Persona"/>
+        <mapping class="models.Historial"/>
+        <mapping class="models.Enfermedad"/>
+        <mapping class="models.Vacuna"/>
+        <mapping class="models.Dosis"/>
+        <mapping class="models.DosisAplicada"/>
+        <mapping class="models.Familiar"/>
     </session-factory>
 </hibernate-configuration>

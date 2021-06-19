@@ -7,16 +7,36 @@ package models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Pedro
  */
+@Entity
+@Table(name = "DOSIS_APLICADA")
 public class DosisAplicada implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "FECHA_APLICACION")
     private LocalDate fechaAplicacion;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_historial")
     private Historial historial;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_dosis")
     private Dosis dosis;
 
     public DosisAplicada() {
@@ -63,6 +83,6 @@ public class DosisAplicada implements Serializable {
 
     @Override
     public String toString() {
-        return "DosisAplicada{" + "id=" + id + ", fechaAplicacion=" + fechaAplicacion +'}';
+        return "DosisAplicada{" + "id=" + id + ", fechaAplicacion=" + fechaAplicacion + '}';
     }
 }

@@ -8,16 +8,28 @@ package models;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Pedro
  */
+@Entity
+@Table(name ="ENFERMEDADES")
 public class Enfermedad implements Serializable{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String descripcion;
+    @ManyToMany(mappedBy = "listEnfermedades", cascade = CascadeType.ALL)
     private Set<Vacuna> listaVacuna = new HashSet<>();
 
     public Enfermedad() {

@@ -9,16 +9,42 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import org.hibernate.annotations.Parameter;
 
 /**
  *
  * @author Pedro
  */
+@Entity
+@Table(name = "HISTORIAL")
 public class Historial implements Serializable {
-
+    
+    @Id
+    @GeneratedValue(generator = "persona")
+    @org.hibernate.annotations.GenericGenerator(
+            name = "persona",
+            strategy = "foreign",
+            parameters = @Parameter(name = "property", value = "persona")
+    )
+    @Column(name = "id_persona")
     private Integer idPersona;
+    
+    @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion;
+    
+    @OneToOne()
+    @JoinColumn(name = "id_persona", referencedColumnName = "id")
     private Persona persona;
+    
+    @OneToMany(mappedBy = "historial")
     private Set<DosisAplicada> listaDosisAplicada = new HashSet<>();
 
     public Historial() {

@@ -8,17 +8,37 @@ package models;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Pedro
  */
+@Entity
+@Table(name = "VACUNAS")
 public class Vacuna implements Serializable{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String descripcion;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "ENFERMEDAD_VACUNAS", 
+            joinColumns = @JoinColumn(name = "id_vacuna"), 
+            inverseJoinColumns = @JoinColumn(name = "id_enfermedad"))
     private Set<Enfermedad> listEnfermedades = new HashSet<>();
+    @OneToMany(mappedBy="vacuna")
+    private Set<Dosis> listDosis = new HashSet<>();
 
     public Vacuna() {
     }
@@ -61,6 +81,14 @@ public class Vacuna implements Serializable{
         this.listEnfermedades = listEnfermedades;
     }
 
+    public Set<Dosis> getListDosis() {
+        return listDosis;
+    }
+
+    public void setListDosis(Set<Dosis> listDosis) {
+        this.listDosis = listDosis;
+    }
+    
     @Override
     public String toString() {
         return "Vacuna{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';

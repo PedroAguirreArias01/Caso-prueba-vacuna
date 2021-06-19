@@ -8,7 +8,6 @@ package models;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,8 +24,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "DOSIS")
-public class Dosis implements Serializable{
-    
+public class Dosis implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,11 +34,11 @@ public class Dosis implements Serializable{
     @Column(name = "unidad_tiempo")
     private String unidadTiempo;
     @ManyToOne
-    @MapsId("id")
     @JoinColumn(name = "id_vacuna")
     private Vacuna vacuna;
     
-   private Set<DosisAplicada> listaDosisAplicada = new HashSet<>();
+    @OneToMany(mappedBy = "dosis")
+    private Set<DosisAplicada> listaDosisAplicada = new HashSet<>();
 
     public Dosis() {
     }
@@ -93,6 +92,6 @@ public class Dosis implements Serializable{
 
     @Override
     public String toString() {
-        return "Dosis{" + "id=" + id + ", valorTiempo=" + valorTiempo + ", unidadTiempo=" + unidadTiempo +'}';
+        return "Dosis{" + "id=" + id + ", valorTiempo=" + valorTiempo + ", unidadTiempo=" + unidadTiempo + '}';
     }
 }
